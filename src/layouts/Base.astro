@@ -1,0 +1,80 @@
+---
+import '@fontsource/instrument-serif/400.css';
+import '@fontsource/instrument-serif/400-italic.css';
+import '@fontsource/geist-sans/400.css';
+import '@fontsource/geist-sans/500.css';
+import '@fontsource/geist-sans/600.css';
+import '../styles/global.css';
+const { title, description, image = 'og.jpg' } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const path = Astro.url.pathname;
+const canonical = new URL(path, Astro.site).href;
+const shareImage = new URL(`${base}${image}`, Astro.site).href;
+const link = (to: string) => `${base}${to}`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f3f0e8" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={link('favicon.svg')} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={shareImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={shareImage} />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="wordmark" href={link('')} aria-label="Fahad, home">F<span class="wordmark-dot">.</span></a>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span></button>
+        <nav id="primary-nav" class="primary-nav" aria-label="Main navigation">
+          <a href={link('work/')}>Work</a>
+          <a href={link('about/')}>About</a>
+          <a href={link('about/#contact')}>Contact</a>
+        </nav>
+        <span class="header-note">Community · ICT · Urban planning</span>
+      </div>
+    </header>
+    <main id="main"><slot /></main>
+    <footer class="site-footer" id="contact">
+      <div class="shell footer-grid">
+        <div><p class="eyebrow">Next conversation</p><h2>Have something<br /><em>in mind?</em></h2></div>
+        <div class="footer-contact"><p>I’m open to conversations about student communities, ICT teaching, civic technology, and planning.</p><a href="https://www.linkedin.com/in/fahad-md-akramul-islam/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn ↗</a><a href="https://www.facebook.com/fahad.akramul.islam/" target="_blank" rel="noopener noreferrer">Find me on Facebook ↗</a></div>
+      </div>
+      <div class="shell footer-bottom"><span>© 2026 Fahad MD Akramul Islam</span><a href="#main">Back to top ↑</a></div>
+    </footer>
+    <script>
+      const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+      const nav = document.querySelector<HTMLElement>('#primary-nav');
+      if (toggle && nav) {
+        toggle.addEventListener('click', () => {
+          const open = toggle.getAttribute('aria-expanded') !== 'true';
+          toggle.setAttribute('aria-expanded', String(open));
+          toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+          nav.classList.toggle('is-open', open);
+        });
+        nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          nav.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Open navigation');
+        }));
+        document.addEventListener('keydown', e => {
+          if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); toggle.focus();
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

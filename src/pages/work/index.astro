@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import { projects, categories } from '../../data/projects';
+const b = import.meta.env.BASE_URL;
+const media = (name: string) => `${b}media/${name}.webp`;
+---
+<Base title="Work — Fahad MD Akramul Islam" description="Community campaigns, ICT teaching, GIS, civic technology, and studio projects by Fahad MD Akramul Islam.">
+  <div class="shell page-intro"><p class="eyebrow">Index / 2026</p><h1>Selected <em>work.</em></h1><p>Projects built with students, collaborators, maps, classrooms and cameras. Choose a field below, or browse everything.</p></div>
+  <section class="shell work-section rule" aria-labelledby="work-heading"><h2 id="work-heading" class="visually-hidden">All projects</h2>
+    <div class="filters" role="group" aria-label="Filter work by field">
+      {categories.map(([key,label]) => <button type="button" data-filter={key} aria-pressed={key === 'all' ? 'true' : 'false'}>{label}</button>)}
+    </div>
+    <p class="visually-hidden" aria-live="polite" id="filter-status"></p>
+    <div class="work-grid">
+      {projects.map((project, i) => <article class:list={['work-item', { 'work-item-wide': i === 0 || i === 3 }]} data-category={project.category}>
+        <a class="visual project-image-link" href={`${b}work/${project.slug}/`} aria-label={`View ${project.title}`}>
+          {project.hero === 'studio' ? <img src={media('studio')} srcset={`${b}media/studio-480.webp 480w, ${b}media/studio.webp 676w`} sizes="(max-width: 760px) 100vw, 60vw" width="676" height="507" alt={project.heroAlt} loading="lazy" /> : project.hero ? <img src={media(project.hero === 'map-board' ? 'map-crop' : project.hero)} width={project.hero === 'map-board' ? 1120 : 921} height={project.hero === 'map-board' ? 950 : 610} alt={project.heroAlt} loading="lazy" /> : <div class:list={['visual-placeholder', project.category]}><span>{project.label}</span><strong>{project.title}</strong><small>Explore the project ↗</small></div>}
+        </a><div class="project-meta"><span>{project.label}</span><span>{String(i+1).padStart(2,'0')} / 08</span></div><h3 class="project-title"><a href={`${b}work/${project.slug}/`}>{project.title} ↗</a></h3><p class="project-description">{project.short}</p>
+      </article>)}
+    </div>
+  </section>
+  <script>
+    const filterButtons = [...document.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+    const items = [...document.querySelectorAll<HTMLElement>('[data-category]')];
+    const status = document.querySelector<HTMLElement>('#filter-status');
+    filterButtons.forEach(button => button.addEventListener('click', () => {
+      const selected = button.dataset.filter;
+      filterButtons.forEach(b => b.setAttribute('aria-pressed', String(b === button)));
+      let count = 0;
+      items.forEach(item => {
+        const show = selected === 'all' || item.dataset.category === selected;
+        item.hidden = !show;
+        if (show) count++;
+      });
+      if (status) status.textContent = `${count} projects shown`;
+    }));
+  </script>
+</Base>
+<style>
+.work-section{padding-top:25px}.filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:50px}.filters button{border:1px solid var(--line);background:transparent;color:var(--ink);padding:10px 17px;min-height:44px;cursor:pointer;font-size:.78rem;font-weight:600}.filters button[aria-pressed=true]{background:var(--ink);color:white;border-color:var(--ink)}.filters button:hover:not([aria-pressed=true]){border-color:var(--ink)}.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px 30px}.work-item[hidden]{display:none}.work-item-wide{grid-column:1/-1}.work-item-wide .visual{height:510px}.visual{display:block;height:390px;background:#dbe6de}.visual img{width:100%;height:100%;object-fit:cover}.work-item-wide:first-child .visual img{object-position:center 39%}.work-item-wide:nth-child(4) .visual img{object-position:center 30%;background:white}.visual-placeholder{height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:30px;background:#dce8df;color:var(--ink)}.visual-placeholder.teaching{background:#dfe6ed}.visual-placeholder.studio{background:#e7e1d7}.visual-placeholder strong{font:clamp(3rem,6vw,6rem)/.94 var(--serif);max-width:11ch}.visual-placeholder small{font-size:.8rem;font-weight:600}.visual-placeholder span{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em}.work-item .project-description{margin-top:12px}.work-item-wide .project-title{font-size:clamp(3rem,5.5vw,6rem)}
+@media(max-width:760px){.work-grid{grid-template-columns:1fr;gap:55px}.work-item-wide{grid-column:auto}.visual,.work-item-wide .visual{height:320px}.filters{margin-bottom:35px}.filters button{padding:8px 12px}.visual-placeholder{padding:22px}.visual-placeholder strong{font-size:3.5rem}}
+</style>

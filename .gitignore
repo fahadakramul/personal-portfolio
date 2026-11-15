@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+.env*
+Fahad_Portfolio.html
+source-extract/
+inspect_source.py
+prepare_media.py
+*.log
