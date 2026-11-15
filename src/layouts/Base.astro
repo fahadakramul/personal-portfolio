@@ -43,7 +43,7 @@ const link = (to: string) => `${base}${to}`;
     <a class="skip" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="shell header-inner">
-        <a class="wordmark" href={link('')} aria-label="Fahad, home"><img src={link('brand-mark.svg')} width="38" height="38" alt="" /><span>Fahad<span class="wordmark-dot">.</span></span></a>
+        <a class="wordmark" href={link('')} aria-label="Fahad, home"><span>Fahad<span class="wordmark-dot">.</span></span></a>
         <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span></button>
         <nav id="primary-nav" class="primary-nav" aria-label="Main navigation">
           <a href={link('')}>Home</a>
@@ -52,18 +52,28 @@ const link = (to: string) => `${base}${to}`;
           <a href={link('#resume')}>Resume</a>
           <a href={link('#contact')}>Contact</a>
         </nav>
-        <span class="header-note">Community · ICT · Urban planning</span>
+        <span class="header-note">Community · Urban planning · GIS</span>
       </div>
     </header>
     <main id="main"><slot /></main>
     <footer class="site-footer" id="contact">
       <div class="shell footer-grid">
         <div><p class="eyebrow">Next conversation</p><h2>Have something<br /><em>in mind?</em></h2></div>
-        <div class="footer-contact"><p>I’m open to conversations about student communities, ICT teaching, civic technology, and planning.</p><a href="https://github.com/fahadakramul" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/fahad-md-akramul-islam/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://www.facebook.com/fahad.akramul.islam/" target="_blank" rel="noopener noreferrer">Facebook ↗</a><a href="https://x.com/akramul1_fahad" target="_blank" rel="noopener noreferrer">X ↗</a><a href="https://www.instagram.com/fahad_akramul/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div>
+        <div class="footer-contact"><p>I’m open to conversations about student communities, urban planning, GIS and civic technology.</p><a href="mailto:fahadakramul46@gmail.com">Email me ↗</a><a href="https://github.com/fahadakramul" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/fahad-md-akramul-islam/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://www.facebook.com/fahad.akramul.islam/" target="_blank" rel="noopener noreferrer">Facebook ↗</a><a href="https://x.com/akramul1_fahad" target="_blank" rel="noopener noreferrer">X ↗</a><a href="https://www.instagram.com/fahad_akramul/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div>
       </div>
-      <div class="shell footer-bottom"><span>© 2026 Fahad MD Akramul Islam</span><a href="#main">Back to top ↑</a></div>
+      <div class="shell footer-bottom"><span>© 2026 Fahad MD Akramul Islam</span><span class="site-views" data-site-views hidden>Site views: <strong data-view-count></strong></span><a href="#main">Back to top ↑</a></div>
     </footer>
     <script>
+      if (location.hostname === 'fahadakramul.github.io') {
+        fetch('https://countapi.mileshilliard.com/api/v1/hit/fahadakramul-personal-portfolio-site-views-2026', { cache: 'no-store' })
+          .then(response => response.ok ? response.json() : Promise.reject())
+          .then(data => {
+            const count = Number(data.value);
+            const wrapper = document.querySelector<HTMLElement>('[data-site-views]');
+            const value = document.querySelector<HTMLElement>('[data-view-count]');
+            if (wrapper && value && Number.isFinite(count)) { value.textContent = count.toLocaleString(); wrapper.hidden = false; }
+          }).catch(() => {});
+      }
       const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
       const nav = document.querySelector<HTMLElement>('#primary-nav');
       if (toggle && nav) {

@@ -4,14 +4,15 @@ import { projects, categories } from '../../data/projects';
 const b = import.meta.env.BASE_URL;
 const media = (name: string) => `${b}media/${name}.webp`;
 ---
-<Base title="Work — Fahad MD Akramul Islam" description="Community campaigns, ICT teaching, GIS, civic technology, and studio projects by Fahad MD Akramul Islam.">
-  <div class="shell page-intro"><p class="eyebrow">Index / 2026</p><h1>Selected <em>work.</em></h1><p>Projects built with students, collaborators, maps, classrooms and cameras. Choose a field below, or browse everything.</p></div>
+<Base title="Work — Fahad MD Akramul Islam" description="Community campaigns, ICT teaching, GIS, civic technology and studio projects by Fahad MD Akramul Islam.">
+  <div class="shell page-intro"><p class="eyebrow">Index / 2026</p><h1>Selected <em>work.</em></h1><p>Projects built with students, collaborators, maps, classrooms and cameras. Browse community work, planning research, a poster and a documentary.</p></div>
   <section class="shell work-section rule" aria-labelledby="work-heading"><h2 id="work-heading" class="visually-hidden">All projects</h2>
+    <div class="work-jump-links"><a href="#research-and-studio">Research, poster & documentary ↓</a></div>
     <div class="filters" role="group" aria-label="Filter work by field">
       {categories.map(([key,label]) => <button type="button" data-filter={key} aria-pressed={key === 'all' ? 'true' : 'false'}>{label}</button>)}
     </div>
     <p class="visually-hidden" aria-live="polite" id="filter-status"></p>
-    <div class="work-grid">
+    <div class="work-grid" id="research-and-studio">
       {projects.map((project, i) => <article class:list={['work-item', { 'work-item-wide': i === 0 || i === 3 }]} data-category={project.category}>
         <a class="visual project-image-link" href={`${b}work/${project.slug}/`} aria-label={`View ${project.title}`}>
           {project.hero === 'studio' ? <img src={media('studio')} srcset={`${b}media/studio-480.webp 480w, ${b}media/studio.webp 676w`} sizes="(max-width: 760px) 100vw, 60vw" width="676" height="507" alt={project.heroAlt} loading="lazy" /> : project.hero ? <img src={media(project.hero === 'map-board' ? 'map-crop' : project.hero)} width={project.hero === 'map-board' ? 1120 : 921} height={project.hero === 'map-board' ? 950 : 610} alt={project.heroAlt} loading="lazy" /> : <div class:list={['visual-placeholder', project.category]}><span>{project.label}</span><strong>{project.title}</strong><small>Explore the project ↗</small></div>}
@@ -41,4 +42,5 @@ const media = (name: string) => `${b}media/${name}.webp`;
 @media(max-width:760px){.work-grid{grid-template-columns:1fr;gap:55px}.work-item-wide{grid-column:auto}.visual,.work-item-wide .visual{height:320px}.filters{margin-bottom:35px}.filters button{padding:8px 12px}.visual-placeholder{padding:22px}.visual-placeholder strong{font-size:3.5rem}}
 .visual img{object-fit:contain;background:#e2e9e6}.work-item-wide:first-child .visual{background:#123c4b}.work-item-wide:first-child .visual img{width:auto;max-width:100%;margin-inline:auto;background:transparent}.work-item-wide:nth-child(4) .visual img{object-fit:contain}
 .filters button{background:transparent;color:#f5fbfc;border-color:#748891}.filters button[aria-pressed=true]{background:#20d7e8;color:#071d2a;border-color:#20d7e8}.filters button:hover:not([aria-pressed=true]){border-color:#20d7e8}
+.work-jump-links{margin:0 0 22px}.work-jump-links a{display:inline-flex;align-items:center;min-height:44px;padding:10px 16px;border:1px solid #20d7e8;border-radius:999px;color:#20d7e8;text-decoration:none;font-size:.85rem;font-weight:700}
 </style>

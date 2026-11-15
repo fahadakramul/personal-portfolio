@@ -18,15 +18,15 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: 'chorcha-community-campaigns', title: 'A community in motion',
-    short: 'Student support, campaign communication, and creator coordination at Chorcha.',
+    short: 'Student support and campaign communication at Chorcha.',
     category: 'community', label: 'Chorcha / Community & campaigns',
     hero: 'campaign-ipad', heroAlt: 'Still from the public Chorcha iPad Giveaway announcement',
     role: 'Community Expert since May 2025',
-    overview: 'I help students use Chorcha, answer questions, collect feedback, and keep campaign communication clear. My work spans participation, push notifications, in-app modal copy, selected publishing, and coordination with creators.',
+    overview: 'Chorcha is a learning platform for practice questions, mock tests and AI-supported explanations. I help students use it, answer questions, collect feedback and keep campaign communication clear. I have contributed to 25+ professional projects. My work spans participation, push notifications, in-app modal copy, selected publishing and coordination with creators.',
     evidence: [
       'Chorcha community membership moved from 35K to 160K during my tenure, May 2025–November 2026. This is community growth during that period, not a claim that I caused the entire increase.',
       'The iPad Giveaway and 11.11 are featured examples of public campaign communication and participation work. The linked posts show the campaigns; the operational contribution described here comes from my supplied portfolio brief.',
-      'Additional public appearances cover HSC 26 results eve, RUET admissions eve, and my first on-camera appearance.'
+      'Additional public appearances cover HSC 26 results eve, RUET admissions eve and my first on-camera appearance.'
     ],
     links: [
       { label: 'iPad Giveaway live announcement', url: 'https://www.facebook.com/reel/1114666427997780' },
@@ -66,7 +66,7 @@ export const projects: Project[] = [
     category: 'planning', label: 'Civic technology / Independent prototype',
     hero: 'nagar-0', heroAlt: 'NagarBondhu mobile app prototype home screen',
     role: 'Co-builder with Tashika Hossain',
-    overview: 'Residents can report neighborhood issues in Bengali using text, voice and a photo, view issues on a map, and follow their status. The prototype also explores ward scorecards, civic information, an AI assistant and a planning workspace.',
+    overview: 'Residents can report neighborhood issues in Bengali using text, voice and a photo, view issues on a map and follow their status. The prototype also explores ward scorecards, civic information, an AI assistant and a planning workspace.',
     evidence: [
       'The reporting → map → tracking sequence is shown with screenshots captured from the public prototype on 15 November 2026. They represent the public interface at that time, not a promise of live service availability.',
       'This is an independent prototype, not a municipal service or Chorcha project.',
@@ -102,7 +102,7 @@ export const projects: Project[] = [
     evidence: [
       'The source map lists 19,485 ha of eligible cropland with recurring November water in Naogaon, including 4,751 ha in Manda. These figures refer to the map’s defined overlap, not all flooded land.',
       'Water observations: 1984–2021. Eligible cropland has at least five valid Novembers and excludes permanent water. A pixel counts at the 25% threshold. Area uses WGS84 ellipsoidal pixel hectares.',
-      'Data: JRC Global Surface Water v1.4, ESA WorldCover 2021 v200, and BAMIS district and upazila boundaries. The map records possible locations for field checks, not a diagnosis of crop loss.'
+      'Data: JRC Global Surface Water v1.4, ESA WorldCover 2021 v200 and BAMIS district and upazila boundaries. The map records possible locations for field checks, not a diagnosis of crop loss.'
     ],
     credits: 'Map and analysis: Fahad MD Akramul Islam. Data attribution is printed on the map board.',
   },
@@ -134,7 +134,7 @@ export const projects: Project[] = [
     short: 'A group poster on air pollution and possible responses in Rajshahi.',
     category: 'studio', label: 'URP 1234 / Group poster',
     role: 'Group project contributor',
-    overview: 'Our poster considers air pollution sources in Rajshahi, including brick kilns and unregulated construction, and presents possible responses.',
+    overview: 'Our poster presents possible responses to air pollution in Rajshahi from sources including brick kilns and unregulated construction.',
     evidence: ['The poster is linked as a public Google Drive document. Its source file was not present locally.'],
     credits: 'Poster design: Sabbir Hossain. Group: Sabbir Hossain, Tashika Hossain, Farhat Afrin and Fahad MD Akramul Islam.',
     links: [{ label: 'Open the poster', url: 'https://drive.google.com/file/d/1ST2meNY4YpGpqAeWz4az4K_ZFpOCBizr/view' }],
@@ -146,7 +146,7 @@ export const projects: Project[] = [
     hero: 'pavilion-hero', heroAlt: 'Scale model of a pavilion in a waterside landscape',
     role: 'Design and model team member',
     overview: 'Our five-person studio team designed and built a scale model of a pavilion concept for Croatia’s Plitvice Lakes landscape. Roof planes and a wooden footbridge shape the approach over water.',
-    evidence: ['Sketches, site views, construction photographs, and the finished model show the development of the idea.'],
+    evidence: ['Sketches, site views, construction photographs and the finished model show the development of the idea.'],
     credits: 'Design and model team: Tashika Hossain, Farhat Afrin, Sabbir Hossain, BM Shafi Sahal Mokaddas and Fahad MD Akramul Islam.',
     gallery: [
       { src: 'pavilion-sketch', alt: 'Concept sketches of pavilion roof and site', caption: '01 / Concept sketches' },
