@@ -1,0 +1,48 @@
+---
+const b = import.meta.env.BASE_URL;
+const views = [
+  { key: 'bangladesh', label: 'Bangladesh', alt: 'Bangladesh district map showing recurring November water on eligible cropland, with Naogaon outlined', note: 'District view · Naogaon is outlined. The color shows the share of eligible cropland with recurring November water.', width: 1098, height: 885 },
+  { key: 'naogaon', label: 'Naogaon', alt: 'Naogaon upazila map showing Manda, Naogaon Sadar and Atrai', note: 'Upazila view · The map board reports 19,485 ha of overlap in Naogaon. Atrai has the largest area.', width: 499, height: 437 },
+  { key: 'manda', label: 'Manda', alt: 'Manda detailed map of recurring water on cropland, with brown areas marking the threshold', note: 'Detail view · The map board reports 4,751 ha of overlap in Manda. Brown pixels meet the ≥25% threshold.', width: 499, height: 432 },
+];
+---
+<section class="shell special-section map-explorer" aria-labelledby="map-explorer-title">
+  <div class="section-heading"><div><p class="eyebrow">Explore the scale</p><h2 id="map-explorer-title">Bangladesh to <em>Manda.</em></h2></div><p class="aside">These are exact crops of the original map board. Open the full board for the legend, method and credits.</p></div>
+  <div data-map-explorer>
+    <div class="map-tabs" role="tablist" aria-label="Map area">
+      {views.map((view, i) => <button type="button" role="tab" id={`map-tab-${view.key}`} aria-controls={`map-panel-${view.key}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{String(i+1).padStart(2,'0')} / {view.label}</button>)}
+    </div>
+    {views.map(view => <div class="map-panel" role="tabpanel" id={`map-panel-${view.key}`} aria-labelledby={`map-tab-${view.key}`}><img src={`${b}media/map-${view.key}.webp`} width={view.width} height={view.height} loading="lazy" alt={view.alt} /><p>{view.note}</p></div>)}
+  </div>
+  <button class="gallery-trigger full-map-trigger" type="button" data-src={`${b}media/map-board.webp`} data-alt="Full source map board with Bangladesh, Naogaon and Manda views, legend, findings, method and credits">Open full-resolution map ↗</button>
+  <script>
+    const explorer = document.querySelector<HTMLElement>('[data-map-explorer]');
+    if (explorer) {
+      const tabs = [...explorer.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+      const panels = [...explorer.querySelectorAll<HTMLElement>('[role="tabpanel"]')];
+      const activate = (index: number, focus = false) => {
+        tabs.forEach((tab, i) => { tab.setAttribute('aria-selected', String(i === index)); tab.tabIndex = i === index ? 0 : -1; });
+        panels.forEach((panel, i) => panel.hidden = i !== index);
+        if (focus) tabs[index].focus();
+      };
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => activate(index));
+        tab.addEventListener('keydown', event => {
+          let next = index;
+          if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+          else if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+          else if (event.key === 'Home') next = 0;
+          else if (event.key === 'End') next = tabs.length - 1;
+          else return;
+          event.preventDefault(); activate(next, true);
+        });
+      });
+      activate(0);
+    }
+  </script>
+</section>
+<style>
+.map-explorer{padding-top:95px}.map-tabs{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--ink)}.map-tabs button{border:0;background:transparent;padding:15px;text-align:left;min-height:52px;color:var(--ink);font-weight:600;cursor:pointer}.map-tabs button+button{border-left:1px solid var(--line)}.map-tabs button[aria-selected=true]{background:var(--ink);color:#fff}.map-panel{background:white;padding:22px 22px 16px;border:1px solid var(--line);border-top:0}.map-panel[hidden]{display:none}.map-panel img{display:block;width:100%;height:500px;object-fit:contain;object-position:center;background:white}.map-panel p{border-top:1px solid var(--line);padding-top:12px;margin-top:12px;color:var(--muted);font-size:.85rem}.full-map-trigger{width:auto!important;border:1px solid var(--ink)!important;background:var(--ink)!important;color:white!important;margin-top:15px;padding:12px 18px!important;min-height:48px;cursor:zoom-in!important;font-weight:600}
+@media(max-width:700px){.map-explorer{padding-top:65px}.map-tabs button{font-size:.75rem;padding:10px}.map-panel{padding:10px}.map-panel img{height:350px}}
+@media(max-width:430px){.map-panel img{height:285px}}
+</style>

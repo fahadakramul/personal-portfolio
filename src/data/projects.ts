@@ -20,7 +20,7 @@ export const projects: Project[] = [
     slug: 'chorcha-community-campaigns', title: 'A community in motion',
     short: 'Student support, campaign communication, and creator coordination at Chorcha.',
     category: 'community', label: 'Chorcha / Community & campaigns',
-    hero: 'studio', heroAlt: 'Fahad in the Chorcha recording studio beside an ICT lesson screen',
+    hero: 'campaign-1111', heroAlt: 'Fahad speaking in the public Chorcha 11.11 campaign video',
     role: 'Community Expert since May 2025',
     overview: 'I help students use Chorcha, answer questions, collect feedback, and keep campaign communication clear. My work spans participation, push notifications, in-app modal copy, selected publishing, and coordination with creators.',
     evidence: [
@@ -40,7 +40,7 @@ export const projects: Project[] = [
     slug: 'ict-teaching', title: 'Inside my ICT classroom',
     short: 'SSC 27’s full ICT course and HSC lessons taught through Chorcha.',
     category: 'teaching', label: 'Chorcha / Teaching',
-    hero: 'ict-web', heroAlt: 'Chorcha app listing for an HSC Web Design and HTML class',
+    hero: 'class-0', heroAlt: 'Chorcha app interface showing Fahad’s ICT class lessons',
     role: 'ICT Instructor since September 2026',
     overview: 'I teach the full SSC 27 ICT course and HSC ICT, including Web Design & HTML and Number Systems & Digital Devices. The app listings shown here are examples of paid classes, not the paid lessons themselves.',
     evidence: [
@@ -50,6 +50,10 @@ export const projects: Project[] = [
     ],
     links: [{ label: 'Read my live-class recap', url: 'https://www.linkedin.com/posts/fahad-md-akramul-islam_teachingjourney-firstliveclass-hsc-activity-7506394289787019264-V2kF' }],
     gallery: [
+      { src: 'class-0', alt: 'Chorcha mobile app showing ICT lesson list', caption: 'Course interface · lesson list' },
+      { src: 'class-1', alt: 'Chorcha mobile app showing more ICT lessons', caption: 'Course interface · more lessons' },
+      { src: 'class-2', alt: 'Chorcha mobile app showing an ICT lesson screen', caption: 'Class interface · lesson detail' },
+      { src: 'class-3', alt: 'Chorcha mobile app showing a second ICT lesson screen', caption: 'Class interface · lesson detail' },
       { src: 'ict-web', alt: 'Bangla app listing for Web Design and HTML', caption: 'HSC · ওয়েব ডিজাইন ও এইচটিএমএল' },
       { src: 'ict-number', alt: 'Bangla app listing for Number Systems and Digital Devices', caption: 'HSC · সংখ্যা পদ্ধতি ও ডিজিটাল ডিভাইস' },
       { src: 'ict-ssc-one', alt: 'Bangla SSC ICT listing for chapters one and three', caption: 'SSC 27 · অধ্যায় ১ + ৩' },
@@ -60,16 +64,32 @@ export const projects: Project[] = [
     slug: 'nagarbondhu-ai', title: 'NagarBondhu AI',
     short: 'A Bengali-language civic reporting prototype for Rajshahi.',
     category: 'planning', label: 'Civic technology / Independent prototype',
+    hero: 'nagar-0', heroAlt: 'NagarBondhu mobile app prototype home screen',
     role: 'Co-builder with Tashika Hossain',
-    overview: 'Residents can report neighborhood issues, view them on a map, and follow their status. The prototype also explores ward scorecards and a planning workspace.',
+    overview: 'Residents can report neighborhood issues in Bengali using text, voice and a photo, view issues on a map, and follow their status. The prototype also explores ward scorecards, civic information, an AI assistant and a planning workspace.',
     evidence: [
-      'The reporting → map → tracking sequence describes the supplied prototype. No local product screenshots were available to publish.',
-      'This is an independent prototype, not a municipal service or Chorcha project.'
+      'The reporting → map → tracking sequence is shown with screenshots captured from the public prototype on 15 November 2026. They represent the public interface at that time, not a promise of live service availability.',
+      'This is an independent prototype, not a municipal service or Chorcha project.',
+      'The supplied 90-second explanation video shows the report flow and additional prototype capabilities.'
     ],
     credits: 'Co-builders: Fahad MD Akramul Islam and Tashika Hossain.',
     links: [
       { label: 'Try the demo', url: 'https://nagarbondhu-api.onrender.com/' },
       { label: 'Watch the project story', url: 'https://www.facebook.com/reel/39144074205235936' }
+    ],
+    gallery: [
+      { src: 'nagar-0', alt: 'NagarBondhu mobile homepage', caption: '01 / Home' },
+      { src: 'nagar-1', alt: 'NagarBondhu feature and information screen', caption: '02 / Features' },
+      { src: 'nagar-2', alt: 'NagarBondhu civic information screen', caption: '03 / Civic information' },
+      { src: 'nagar-3', alt: 'NagarBondhu mobile map and issue markers', caption: '04 / Map' },
+      { src: 'nagar-4', alt: 'NagarBondhu tracking screen', caption: '05 / Track' },
+      { src: 'nagar-5', alt: 'NagarBondhu issue reporting screen', caption: '06 / Report' },
+      { src: 'nagar-6', alt: 'NagarBondhu assistant interface', caption: '07 / Assistant' },
+      { src: 'nagar-7', alt: 'NagarBondhu ward scorecard', caption: '08 / Ward view' },
+      { src: 'nagar-8', alt: 'NagarBondhu planning workspace', caption: '09 / Planning workspace' },
+      { src: 'nagar-report', alt: 'NagarBondhu Bengali issue reporting form in the desktop prototype', caption: '10 / Desktop report' },
+      { src: 'nagar-map', alt: 'NagarBondhu Rajshahi issue map in the desktop prototype', caption: '11 / Desktop map' },
+      { src: 'nagar-track', alt: 'NagarBondhu report tracking form in the desktop prototype', caption: '12 / Desktop tracking' },
     ],
   },
   {

@@ -4,6 +4,11 @@ import '@fontsource/instrument-serif/400-italic.css';
 import '@fontsource/geist-sans/400.css';
 import '@fontsource/geist-sans/500.css';
 import '@fontsource/geist-sans/600.css';
+import '@fontsource/plus-jakarta-sans/400.css';
+import '@fontsource/plus-jakarta-sans/500.css';
+import '@fontsource/plus-jakarta-sans/600.css';
+import '@fontsource/plus-jakarta-sans/700.css';
+import '@fontsource/plus-jakarta-sans/800.css';
 import '../styles/global.css';
 const { title, description, image = 'og.jpg' } = Astro.props;
 const base = import.meta.env.BASE_URL;
@@ -34,16 +39,18 @@ const link = (to: string) => `${base}${to}`;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={shareImage} />
   </head>
-  <body>
+  <body class:list={{ 'home-page': path === base || path === `${base}index.html`, 'work-index-page': path === `${base}work/`, 'about-page': path === `${base}about/` }}>
     <a class="skip" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="shell header-inner">
-        <a class="wordmark" href={link('')} aria-label="Fahad, home">F<span class="wordmark-dot">.</span></a>
+        <a class="wordmark" href={link('')} aria-label="Fahad, home"><img src={link('brand-mark.svg')} width="38" height="38" alt="" /><span>Fahad<span class="wordmark-dot">.</span></span></a>
         <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span></button>
         <nav id="primary-nav" class="primary-nav" aria-label="Main navigation">
-          <a href={link('work/')}>Work</a>
-          <a href={link('about/')}>About</a>
-          <a href={link('about/#contact')}>Contact</a>
+          <a href={link('')}>Home</a>
+          <a href={link('#proficiency')}>Proficiency</a>
+          <a href={link('#featured')}>Projects</a>
+          <a href={link('#resume')}>Resume</a>
+          <a href={link('#contact')}>Contact</a>
         </nav>
         <span class="header-note">Community · ICT · Urban planning</span>
       </div>
@@ -52,7 +59,7 @@ const link = (to: string) => `${base}${to}`;
     <footer class="site-footer" id="contact">
       <div class="shell footer-grid">
         <div><p class="eyebrow">Next conversation</p><h2>Have something<br /><em>in mind?</em></h2></div>
-        <div class="footer-contact"><p>I’m open to conversations about student communities, ICT teaching, civic technology, and planning.</p><a href="https://www.linkedin.com/in/fahad-md-akramul-islam/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn ↗</a><a href="https://www.facebook.com/fahad.akramul.islam/" target="_blank" rel="noopener noreferrer">Find me on Facebook ↗</a></div>
+        <div class="footer-contact"><p>I’m open to conversations about student communities, ICT teaching, civic technology, and planning.</p><a href="https://www.linkedin.com/in/fahad-md-akramul-islam/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://www.facebook.com/fahad.akramul.islam/" target="_blank" rel="noopener noreferrer">Facebook ↗</a><a href="https://x.com/akramul1_fahad" target="_blank" rel="noopener noreferrer">X ↗</a><a href="https://www.instagram.com/fahad_akramul/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div>
       </div>
       <div class="shell footer-bottom"><span>© 2026 Fahad MD Akramul Islam</span><a href="#main">Back to top ↑</a></div>
     </footer>
@@ -71,7 +78,7 @@ const link = (to: string) => `${base}${to}`;
         }));
         document.addEventListener('keydown', e => {
           if (e.key === 'Escape' && nav.classList.contains('is-open')) {
-            nav.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); toggle.focus();
+            nav.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Open navigation'); toggle.focus();
           }
         });
       }
